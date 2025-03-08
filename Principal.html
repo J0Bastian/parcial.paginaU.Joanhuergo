@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Investigación Universitaria</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function toggleGrupo(id) {
+            let grupo = document.getElementById(id);
+            grupo.classList.toggle('d-none');
+        }
+
+        function mostrarOpcionesAdicionales(selectId, opcionesId) {
+            let grupoInvestigacion = document.getElementById(selectId).value;
+            let opcionesAdicionales = document.getElementById(opcionesId);
+            if (grupoInvestigacion === 'COMBA I+D') {
+                opcionesAdicionales.classList.remove('d-none');
+            } else {
+                opcionesAdicionales.classList.add('d-none');
+            }
+        }
+    </script>
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <h1 class="text-center">Investigación Universitaria</h1>
+        
+        <h3>Grupos de Investigación</h3>
+        <ul class="list-group mb-3">
+            <li class="list-group-item" onclick="toggleGrupo('comba')" style="cursor:pointer;">COMBA I+D</li>
+            <li id="comba" class="list-group-item d-none border p-3">
+                <p><strong>Descripción:</strong> COMBA I+D es un grupo dedicado a la investigación y desarrollo tecnológico.</p>
+                <p><strong>Director:</strong> Dr. Claudia Liliana Zuñiga Cañon</p>
+                <p><strong>Lineas de Investigación:</strong><br>
+                    1.- Arquitectura de Tecnología Informática<br>
+                    2.- Computación Ubicua, Urbana y Móvil<br>
+                    3.- Desarrollo de Sistemas Informáticos<br>
+                    4.- Redes Inalámbricas para la Inclusión Digital y el Desarrollo Económico
+                </p>
+            </li>
+            
+            <li class="list-group-item" onclick="toggleGrupo('gieiam')" style="cursor:pointer;">GIEIAM</li>
+            <li id="gieiam" class="list-group-item d-none border p-3">
+                <p><strong>Descripción:</strong> GIEIAM se enfoca en inteligencia artificial aplicada a modelos de gestión y automatización.</p>
+                <p><strong>Docentes:</strong> Diana Paola Bernal Suárez</p>
+                <p><strong>Lineas de Investigación:</strong><br>
+                    1.- Gestión y Control de la Contaminación Ambiental<br>
+                    2.- Instrumentación, automatización y sistemas inteligentes<br>
+                    3.- Logística, operaciones, productividad y gestión de proyectos
+                </p>
+            </li>
+        </ul>
+
+        <h3>Registro de Investigadores</h3>
+        <form id="formInvestigador">
+            <div class="mb-3">
+                <label>Nombre:</label>
+                <input type="text" id="nombreInvestigador" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Especialidad:</label>
+                <input type="text" id="especialidadInvestigador" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Grupo de Investigación:</label>
+                <select id="GrupoInvestigacionInvestigador" class="form-control" required onchange="mostrarOpcionesAdicionales('GrupoInvestigacionInvestigador', 'opcionesAdicionalesInvestigador')">
+                    <option value="GIEIAM">GIEIAM</option>
+                    <option value="COMBA I+D">COMBA I+D</option>
+                </select>
+            </div>
+            <div id="opcionesAdicionalesInvestigador" class="mb-3 d-none">
+                <label>Subgrupo de Investigación:</label>
+                <select id="SubgrupoInvestigacionInvestigador" class="form-control">
+                    <option value="COMBA">COMBA</option>
+                    <option value="INFORMA">INFORMA</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+        <ul id="listaInvestigadores" class="list-group mt-3"></ul>
+
+        <h3>Registro de Estudiantes</h3>
+        <form id="formEstudiante">
+            <div class="mb-3">
+                <label>Nombre del Estudiante:</label>
+                <input type="text" id="nombreEstudiante" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Código del Estudiante:</label>
+                <input type="text" id="codigoEstudiante" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Carrera del Estudiante:</label>
+                <input type="text" id="carreraEstudiante" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Grupo de Investigación:</label>
+                <select id="GrupoInvestigacionEstudiante" class="form-control" required onchange="mostrarOpcionesAdicionales('GrupoInvestigacionEstudiante', 'opcionesAdicionalesEstudiante')">
+                    <option value="GIEIAM">GIEIAM</option>
+                    <option value="COMBA I+D">COMBA I+D</option>
+                </select>
+            </div>
+            <div id="opcionesAdicionalesEstudiante" class="mb-3 d-none">
+                <label>Subgrupo de Investigación:</label>
+                <select id="SubgrupoInvestigacionEstudiante" class="form-control">
+                    <option value="COMBA">COMBA</option>
+                    <option value="INFORMA">INFORMA</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar Estudiante</button>
+        </form>
+        <ul id="listaEstudiantes" class="list-group mt-3"></ul>
+
+        <h3>Registro de Proyectos</h3>
+        <form id="formProyecto">
+            <div class="mb-3">
+                <label>Nombre del Proyecto:</label>
+                <input type="text" id="nombreProyecto" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Descripción:</label>
+                <textarea id="descripcionProyecto" class="form-control" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label>Grupo de Investigación:</label>
+                <select id="GrupoInvestigacionProyecto" class="form-control" required onchange="mostrarOpcionesAdicionales('GrupoInvestigacionProyecto', 'opcionesAdicionalesProyecto')">
+                    <option value="GIEIAM">GIEIAM</option>
+                    <option value="COMBA I+D">COMBA I+D</option>
+                </select>
+            </div>
+            <div id="opcionesAdicionalesProyecto" class="mb-3 d-none">
+                <label>Subgrupo de Investigación:</label>
+                <select id="SubgrupoInvestigacionProyecto" class="form-control">
+                    <option value="COMBA">COMBA</option>
+                    <option value="INFORMA">INFORMA</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar Proyecto</button>
+        </form>
+        <ul id="listaProyectos" class="list-group mt-3"></ul>
+    </div>
+    
+    <script>
+        function agregarElemento(listaId, texto) {
+            let lista = document.getElementById(listaId);
+            let item = document.createElement('li');
+            item.classList.add('list-group-item');
+            item.textContent = texto;
+            lista.appendChild(item);
+        }
+
+        document.getElementById('formInvestigador').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let nombre = document.getElementById('nombreInvestigador').value;
+            let especialidad = document.getElementById('especialidadInvestigador').value;
+            let grupoInvestigacion = document.getElementById('GrupoInvestigacionInvestigador').value;
+            let subgrupoInvestigacion = document.getElementById('SubgrupoInvestigacionInvestigador').value;
+            let texto = `${nombre} - ${especialidad} - ${grupoInvestigacion}`;
+            if (grupoInvestigacion === 'COMBA I+D') {
+                texto += ` - ${subgrupoInvestigacion}`;
+            }
+            agregarElemento('listaInvestigadores', texto);
+        });
+
+        document.getElementById('formEstudiante').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let nombre = document.getElementById('nombreEstudiante').value;
+            let codigo = document.getElementById('codigoEstudiante').value;
+            let carrera = document.getElementById('carreraEstudiante').value;
+            let grupoInvestigacion = document.getElementById('GrupoInvestigacionEstudiante').value;
+            let subgrupoInvestigacion = document.getElementById('SubgrupoInvestigacionEstudiante').value;
+            let texto = `${nombre} - ${codigo} - ${carrera} - ${grupoInvestigacion}`;
+            if (grupoInvestigacion === 'COMBA I+D') {
+                texto += ` - ${subgrupoInvestigacion}`;
+            }
+            
+            agregarElemento('listaEstudiantes', texto);
+        });
+
+        document.getElementById('formProyecto').addEventListener('submit', function(event) {
+        event.preventDefault();
+        let nombre = document.getElementById('nombreProyecto').value;
+        let descripcion = document.getElementById('descripcionProyecto').value;
+        let grupoInvestigacion = document.getElementById('GrupoInvestigacionProyecto').value;
+        let subgrupoInvestigacion = document.getElementById('SubgrupoInvestigacionProyecto')?.value;
+        
+        let texto = `${nombre}: ${descripcion} - ${grupoInvestigacion}`;
+        if (grupoInvestigacion === 'COMBA I+D') {
+            texto += ` - ${subgrupoInvestigacion}`;
+        }
+
+        agregarElemento('listaProyectos', texto);
+    });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
